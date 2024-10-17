@@ -25,7 +25,7 @@ echo "$partner_name is the name of the partner."
 country=IN
 state=Kar
 locality=Blr
-orgnisation=IITB
+organisation=IITB
 email_id=user_$(date +%s%N)@example.com
 common_name=$partner_name
 keystore_password=mosip123
@@ -36,16 +36,17 @@ echo "updating conf"
 sed -i 's/\(^C =\).*/\1 '$country'/' $path/certs/root-openssl.cnf
 sed -i 's/\(^ST =\).*/\1 '$state'/' $path/certs/root-openssl.cnf
 sed -i 's/\(^L =\).*/\1 '$locality'/' $path/certs/root-openssl.cnf
-sed -i 's/\(^O =\).*/\1 '$orgnisation'/' $path/certs/root-openssl.cnf
+sed -i 's/\(^O =\).*/\1 '$organisation'/' $path/certs/root-openssl.cnf
 sed -i 's/\(^emailAddress =\).*/\1 '$email_id'/' $path/certs/root-openssl.cnf
-sed -i 's/\(^CN =\).*/\1 '$common_name'-Root/' $path/certs/root-openssl.cnf
+sed -i 's/\(^CN =\).*/\1 '$organisation'-Root/' $path/certs/root-openssl.cnf
+
 
 sed -i 's/\(^C =\).*/\1 '$country'/' $path/certs/client-openssl.cnf
 sed -i 's/\(^ST =\).*/\1 '$state'/' $path/certs/client-openssl.cnf
 sed -i 's/\(^L =\).*/\1 '$locality'/' $path/certs/client-openssl.cnf
-sed -i 's/\(^O =\).*/\1 '$orgnisation'/' $path/certs/client-openssl.cnf
+sed -i 's/\(^O =\).*/\1 '$partner_name'/' $path/certs/client-openssl.cnf
 sed -i 's/\(^emailAddress =\).*/\1 '$email_id'/' $path/certs/client-openssl.cnf
-sed -i 's/\(^CN =\).*/\1 '$common_name'-Client/' $path/certs/client-openssl.cnf
+sed -i 's/\(^CN =\).*/\1 '$partner_name'-Client/' $path/certs/client-openssl.cnf
 
 cert_path=$path/certs/$partner_name
 
